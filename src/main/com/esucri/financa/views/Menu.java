@@ -5,6 +5,8 @@
  */
 package main.com.esucri.financa.views;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author roberto.junior
@@ -73,7 +75,10 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                Menu menu = new Menu();
+                menu.setTitle("Finanças");
+                menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                menu.setVisible(true);
             }
         });
     }
