@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Projetos/Financas/src/main/com/esucri/financa/views/Menu.java</file>
-            <file>file:/C:/Projetos/Financas/src/main/com/esucri/financa/FinancaApp.java</file>
+            <file>file:/C:/dev/FinancasJavaTDD/src/com/esucri/financa/model/base/Entity.java</file>
+            <file>file:/C:/dev/FinancasJavaTDD/src/com/esucri/financa/view/Menu.java</file>
+            <file>file:/C:/dev/FinancasJavaTDD/src/com/esucri/financa/FinancaApp.java</file>
+            <file>file:/C:/dev/FinancasJavaTDD/test/com/esucri/financa/FinancaAppTest.java</file>
+            <file>file:/C:/dev/FinancasJavaTDD/test/com/esucri/financa/model/base/EntityTest.java</file>
         </group>
     </open-files>
 </project-private>
