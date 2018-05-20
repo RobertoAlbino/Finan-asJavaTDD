@@ -1,15 +1,24 @@
-package test.com.esucri.financa.model.base;
+package com.esucri.financa.test.model.base;
 
 import org.junit.Test;
+import junit.framework.Assert;
 
 import com.esucri.financa.model.base.Entity;
 
-import junit.framework.Assert;
-
 public class EntityTest extends Entity {
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(int id) {
+        return;
+    }
     
     @Test
-    public void garantirToStringNaoRetornaNomeEntityBase() {
+    public void garantirToStringNaoRetornaNomeClasseEntity() {
         Assert.assertFalse("Entity".equals(toString()));
     }
     

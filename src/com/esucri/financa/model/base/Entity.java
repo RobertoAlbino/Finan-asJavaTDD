@@ -1,15 +1,9 @@
 package com.esucri.financa.model.base;
 
 public abstract class Entity {
-    public int id;
-
-    public int getId() {
-        return id;
-    }
-
-    private void setId(int id) {
-        this.id = id;
-    }
+    
+    public abstract int getId();
+    public abstract void setId(int id);
     
     @Override
     public String toString() {

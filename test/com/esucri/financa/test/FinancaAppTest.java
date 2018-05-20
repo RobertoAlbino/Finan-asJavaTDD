@@ -1,4 +1,4 @@
-package test.com.esucri.financa;
+package com.esucri.financa.test;
 
 import org.junit.Test;
 
