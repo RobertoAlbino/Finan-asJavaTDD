@@ -45,7 +45,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelCadastroUsuario" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -68,7 +68,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Component id="labelCadastroUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -94,10 +94,13 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="labelCadastroUsuario">
       <Properties>
         <Property name="text" type="java.lang.String" value="N&#xe3;o possui login? clique aqui"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelCadastroUsuarioMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

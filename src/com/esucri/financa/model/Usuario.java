@@ -6,10 +6,10 @@ import com.esucri.financa.model.base.Entity;
 
 public class Usuario extends Entity implements Serializable {
     
-    private int id;
-    private String login;
-    private String email;
-    private String senha;
+    public int id;
+    public String login;
+    public String email;
+    public String senha;
     
     @Override
     public int getId() {

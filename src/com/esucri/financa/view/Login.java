@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.esucri.financa.view;
 
-import javax.swing.JFrame;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
+import java.sql.ResultSet;
 
-/**
- *
- * @author junio
- */
+import com.esucri.financa.controller.DaoUsuario;
+import com.esucri.financa.model.Usuario;
+import java.sql.SQLException;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -36,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         labelLogin = new javax.swing.JTextField();
         labelSenha = new javax.swing.JTextField();
         botaoLogin = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        labelCadastroUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusCycleRoot(false);
@@ -49,7 +42,12 @@ public class Login extends javax.swing.JFrame {
 
         botaoLogin.setText("Login");
 
-        jLabel3.setText("Não possui login? clique aqui");
+        labelCadastroUsuario.setText("Não possui login? clique aqui");
+        labelCadastroUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelCadastroUsuarioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,7 +67,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(labelLogin)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(jLabel3)))
+                        .addComponent(labelCadastroUsuario)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,17 +84,22 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoLogin)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(labelCadastroUsuario)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void labelCadastroUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCadastroUsuarioMouseClicked
+        CadastroUsuario cadastroUsuario = new CadastroUsuario();
+        cadastroUsuario.create();
+    }//GEN-LAST:event_labelCadastroUsuarioMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void create() {
+    public void create() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -135,7 +138,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botaoLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel labelCadastroUsuario;
     private javax.swing.JTextField labelLogin;
     private javax.swing.JTextField labelSenha;
     // End of variables declaration//GEN-END:variables

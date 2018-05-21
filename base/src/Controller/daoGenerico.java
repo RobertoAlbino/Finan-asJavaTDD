@@ -25,6 +25,5 @@ public abstract class daoGenerico {
             pst.setObject((i+1), args[i]);
         }
         return pst.executeQuery();
-    }
-    
+    }    
 }

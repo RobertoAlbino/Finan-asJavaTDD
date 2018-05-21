@@ -2,10 +2,9 @@ package com.esucri.financa.test.model;
 
 import org.junit.Test;
 import org.junit.Before;
-
-import com.esucri.financa.model.Usuario;
 import junit.framework.Assert;
 
+import com.esucri.financa.model.Usuario;
 
 public class UsuarioTest {
     private Usuario usuario;
