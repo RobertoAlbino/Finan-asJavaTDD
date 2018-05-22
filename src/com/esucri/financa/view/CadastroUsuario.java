@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.esucri.financa.view;
 
 import com.esucri.financa.model.Usuario;
+import com.esucri.financa.controller.DaoUsuario;
+import com.esucri.financa.utils.AlertUtils;
+import com.esucri.financa.utils.StringUtils;
 
 public class CadastroUsuario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Cadastro
-     */
+    
     public CadastroUsuario() {
         initComponents();
     }
@@ -104,10 +99,28 @@ public class CadastroUsuario extends javax.swing.JFrame {
    
     
     private void botaoCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarUsuarioActionPerformed
-        Usuario usuario = new Usuario(); 
-        usuario.setLogin(labelLogin.getText());
-        usuario.setSenha(labelSenha.getText());
-        usuario.setEmail(labelEmail.getText());
+        try {
+            String[] fieldList = { labelLogin.getText(), 
+                               labelSenha.getText(), 
+                               labelConfirmacaoSenha.getText(), 
+                               labelEmail.getText() 
+            };
+            if (!StringUtils.stringListIsValid(fieldList)) {
+               AlertUtils.warning("Nem todos os campos foram preennchidos!");
+               return;
+            }
+            if (!DaoUsuario.validarSenha(labelSenha.getText(), labelConfirmacaoSenha.getText())) {
+                AlertUtils.warning("Senhas estão divergindo!");
+                return;
+            }
+            Usuario usuario = new Usuario(); 
+            usuario.setLogin(labelLogin.getText());
+            usuario.setSenha(labelSenha.getText());
+            usuario.setEmail(labelEmail.getText());
+            new DaoUsuario().insert(usuario);
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }   
     }//GEN-LAST:event_botaoCadastrarUsuarioActionPerformed
 
     public void create() {
