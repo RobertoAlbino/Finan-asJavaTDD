@@ -3,6 +3,7 @@ package com.esucri.financa.model;
 import java.io.Serializable;
 
 import com.esucri.financa.model.base.Entity;
+import com.esucri.financa.utils.MD5Utils;
 
 public class Usuario extends Entity implements Serializable {
     
@@ -41,7 +42,7 @@ public class Usuario extends Entity implements Serializable {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(String senha) throws Exception {
+        this.senha = MD5Utils.encriptarSenha(senha);
     }
 }

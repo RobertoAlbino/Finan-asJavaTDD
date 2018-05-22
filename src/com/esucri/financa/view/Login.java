@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 
 import com.esucri.financa.controller.DaoUsuario;
 import com.esucri.financa.model.Usuario;
+import com.esucri.financa.utils.AlertUtils;
+import com.esucri.financa.utils.StringUtils;
 import java.sql.SQLException;
 
 public class Login extends javax.swing.JFrame {
@@ -41,6 +43,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Senha:");
 
         botaoLogin.setText("Login");
+        botaoLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLoginActionPerformed(evt);
+            }
+        });
 
         labelCadastroUsuario.setText("Não possui login? clique aqui");
         labelCadastroUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,6 +102,16 @@ public class Login extends javax.swing.JFrame {
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
         cadastroUsuario.create();
     }//GEN-LAST:event_labelCadastroUsuarioMouseClicked
+
+    private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
+        String[] fieldList = { labelLogin.getText(), 
+                               labelSenha.getText()
+        };
+        if (!StringUtils.stringListIsValid(fieldList)) {
+           AlertUtils.warning("Nem todos os campos foram preennchidos!");
+           return;
+        }
+    }//GEN-LAST:event_botaoLoginActionPerformed
 
     /**
      * @param args the command line arguments

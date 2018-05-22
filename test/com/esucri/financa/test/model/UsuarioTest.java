@@ -10,7 +10,7 @@ public class UsuarioTest {
     private Usuario usuario;
     
     @Before
-    public void inicializar() {
+    public void inicializar() throws Exception {
         this.usuario = new Usuario();
         this.usuario.setId(1);
         this.usuario.setLogin("Roberto");

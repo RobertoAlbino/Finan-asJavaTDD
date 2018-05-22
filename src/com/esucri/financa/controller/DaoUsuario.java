@@ -1,5 +1,7 @@
 package com.esucri.financa.controller;
 
+import java.sql.ResultSet;
+
 import com.esucri.financa.model.Usuario;
 import com.esucri.financa.controller.base.DaoReflection;
 
@@ -16,9 +18,20 @@ public class DaoUsuario extends DaoReflection<Usuario> {
                                         usuario.getSenha());        
     }
     
+    public Usuario findByLoginSenha(String login, String senha) {
+        SQL = "SELECT * FROM USUARIO WHERE LOGIN = ? AND SENHA = ?";
+        return super.executeQuery(SQL, login, senha);
+    }
+    
+    public Boolean logar(Usuario usuario) {
+        
+    }
+    
     public static Boolean validarSenha(String senha, String confirmacaoSenha) {
         return senha.equals(confirmacaoSenha);
     }
     
+    public Usuario populateUsuario(ResultSet rs) {
     
+    } 
 }
