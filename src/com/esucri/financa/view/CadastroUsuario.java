@@ -127,7 +127,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
             AlertUtils.information("Usuário cadastrado com sucesso.");
             this.dispose();
         } catch(Exception ex) {
-            System.out.println(ex.getMessage());
+            AlertUtils.error(ex.getMessage());
         }   
     }//GEN-LAST:event_botaoCadastrarUsuarioActionPerformed
 

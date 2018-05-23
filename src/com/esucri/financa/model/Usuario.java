@@ -12,6 +12,15 @@ public class Usuario extends Entity implements Serializable {
     public String email;
     public String senha;
     
+    public Usuario() {}
+    
+    public Usuario(int id, String login, String email, String senha) {
+        this.id = id;
+        this.login = login;
+        this.email = email;
+        this.senha = senha;        
+    }
+    
     @Override
     public int getId() {
         return this.id;

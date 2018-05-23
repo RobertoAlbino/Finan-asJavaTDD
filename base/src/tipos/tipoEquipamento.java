@@ -5,7 +5,6 @@ public enum tipoEquipamento {
     NOT("NoteBook"),
     DES("DeskTop"),
     MON("Monitor"),
-    CEL("Celular"),
     SER("Servidor");
     
     private String descricao;
