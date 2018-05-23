@@ -27,12 +27,12 @@
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuEntrada">
+            <MenuItem class="javax.swing.JMenuItem" name="menuReceita">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Entrada"/>
+                <Property name="text" type="java.lang.String" value="Receita"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEntradaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReceitaActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuDespesa">

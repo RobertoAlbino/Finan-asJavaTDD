@@ -7,6 +7,8 @@ import com.esucri.financa.view.CadastroEntrada;
 
 public class Menu extends javax.swing.JFrame {
     
+    public static int idUsuarioLogado;
+    
     public Menu() {
         initComponents();
     }
@@ -20,7 +22,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        menuEntrada = new javax.swing.JMenuItem();
+        menuReceita = new javax.swing.JMenuItem();
         menuDespesa = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
@@ -34,13 +36,13 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setText("Cadastrar");
 
-        menuEntrada.setText("Entrada");
-        menuEntrada.addActionListener(new java.awt.event.ActionListener() {
+        menuReceita.setText("Receita");
+        menuReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEntradaActionPerformed(evt);
+                menuReceitaActionPerformed(evt);
             }
         });
-        jMenu3.add(menuEntrada);
+        jMenu3.add(menuReceita);
 
         menuDespesa.setText("Despesa");
         jMenu3.add(menuDespesa);
@@ -75,15 +77,16 @@ public class Menu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menuSairMouseClicked
 
-    private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
+    private void menuReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReceitaActionPerformed
         CadastroEntrada.create();
-    }//GEN-LAST:event_menuEntradaActionPerformed
+    }//GEN-LAST:event_menuReceitaActionPerformed
 
-    public static void create() {
+    public static void create(int usuarioLogadoId, String usuarioLogadoLogin) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Menu menu = new Menu();
-                menu.setTitle("Finanças");
+                idUsuarioLogado = usuarioLogadoId;
+                menu.setTitle("Finanças - Seja bem vindo " + usuarioLogadoLogin);
                 menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 menu.setVisible(true);
             }
@@ -97,7 +100,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem menuDespesa;
-    private javax.swing.JMenuItem menuEntrada;
+    private javax.swing.JMenuItem menuReceita;
     private javax.swing.JMenu menuSair;
     // End of variables declaration//GEN-END:variables
 }

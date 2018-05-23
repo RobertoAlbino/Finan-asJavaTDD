@@ -1,7 +1,9 @@
 package com.esucri.financa.view;
 
+import com.esucri.financa.model.Usuario;
 import com.esucri.financa.controller.DaoUsuario;
 import com.esucri.financa.utils.AlertUtils;
+import com.esucri.financa.utils.MD5Utils;
 import com.esucri.financa.utils.StringUtils;
 
 public class Login extends javax.swing.JFrame {
@@ -102,7 +104,8 @@ public class Login extends javax.swing.JFrame {
             }
             Boolean loginExiste = new DaoUsuario().loginValido(labelLogin.getText(), labelSenha.getText());
             if (loginExiste) {
-                Menu.create();
+                Usuario usuarioLogado = new DaoUsuario().findByLoginSenha(labelLogin.getText(), MD5Utils.encriptarSenha(labelSenha.getText()));
+                Menu.create(usuarioLogado.id, usuarioLogado.login);
                 this.dispose();
             } else {
                 AlertUtils.warning("Usuário não encontrado!");
@@ -112,9 +115,6 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public void create() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
