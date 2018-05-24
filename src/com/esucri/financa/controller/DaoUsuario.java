@@ -18,6 +18,12 @@ public class DaoUsuario extends DaoReflection<Usuario> {
                                         usuario.getSenha());        
     }
     
+    public Usuario getById(int id) throws Exception {
+        SQL = "SELECT * FROM USUARIO WHERE ID = ?";
+        ResultSet rs = super.executeQuery(SQL, id);
+        return rs.next() ? populateUsuario(rs) : new Usuario();
+    }
+    
     public Usuario findByLoginSenha(String login, String senha) throws Exception {
         SQL = "SELECT * FROM USUARIO WHERE LOGIN = ? AND SENHA = ?";
         ResultSet rs = super.executeQuery(SQL, login, senha);

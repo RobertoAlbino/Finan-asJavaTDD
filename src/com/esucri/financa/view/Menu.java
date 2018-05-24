@@ -1,9 +1,6 @@
 package com.esucri.financa.view;
 
-import com.sun.glass.ui.Application;
 import javax.swing.JFrame;
-
-import com.esucri.financa.view.CadastroReceita;
 
 public class Menu extends javax.swing.JFrame {
     
@@ -48,6 +45,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(menuReceita);
 
         menuTipoReceita.setText("Tipo de receita");
+        menuTipoReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTipoReceitaActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuTipoReceita);
 
         menuDespesa.setText("Despesa");
@@ -82,11 +84,11 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public int getUsuarioLogado() {
+    public static int getIdUsuarioLogado() {
         return  idUsuarioLogado;
     }
     
-    public String getLoginUsuarioLogado() {
+    public static String getLoginUsuarioLogado() {
         return loginUsuarioLogado;
     }
     
@@ -97,6 +99,10 @@ public class Menu extends javax.swing.JFrame {
     private void menuReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReceitaActionPerformed
         CadastroReceita.create();
     }//GEN-LAST:event_menuReceitaActionPerformed
+
+    private void menuTipoReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTipoReceitaActionPerformed
+        CadastroTipoReceita.create();
+    }//GEN-LAST:event_menuTipoReceitaActionPerformed
 
     public static void create(int usuarioLogadoId, String usuarioLogadoLogin) {
         java.awt.EventQueue.invokeLater(new Runnable() {
