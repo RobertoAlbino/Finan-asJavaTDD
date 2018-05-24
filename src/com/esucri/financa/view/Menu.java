@@ -3,11 +3,12 @@ package com.esucri.financa.view;
 import com.sun.glass.ui.Application;
 import javax.swing.JFrame;
 
-import com.esucri.financa.view.CadastroEntrada;
+import com.esucri.financa.view.CadastroReceita;
 
 public class Menu extends javax.swing.JFrame {
     
-    public static int idUsuarioLogado;
+    private static int idUsuarioLogado;
+    private static String loginUsuarioLogado;
     
     public Menu() {
         initComponents();
@@ -23,7 +24,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuReceita = new javax.swing.JMenuItem();
+        menuTipoReceita = new javax.swing.JMenuItem();
         menuDespesa = new javax.swing.JMenuItem();
+        menuTipoDespesa = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         jMenu1.setText("File");
@@ -44,8 +47,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(menuReceita);
 
+        menuTipoReceita.setText("Tipo de receita");
+        jMenu3.add(menuTipoReceita);
+
         menuDespesa.setText("Despesa");
         jMenu3.add(menuDespesa);
+
+        menuTipoDespesa.setText("Tipo de despesa");
+        jMenu3.add(menuTipoDespesa);
 
         jMenuBar2.add(jMenu3);
 
@@ -72,13 +81,21 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public int getUsuarioLogado() {
+        return  idUsuarioLogado;
+    }
+    
+    public String getLoginUsuarioLogado() {
+        return loginUsuarioLogado;
+    }
+    
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_menuSairMouseClicked
 
     private void menuReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReceitaActionPerformed
-        CadastroEntrada.create();
+        CadastroReceita.create();
     }//GEN-LAST:event_menuReceitaActionPerformed
 
     public static void create(int usuarioLogadoId, String usuarioLogadoLogin) {
@@ -86,7 +103,8 @@ public class Menu extends javax.swing.JFrame {
             public void run() {
                 Menu menu = new Menu();
                 idUsuarioLogado = usuarioLogadoId;
-                menu.setTitle("Finanças - Seja bem vindo " + usuarioLogadoLogin);
+                loginUsuarioLogado = usuarioLogadoLogin;
+                menu.setTitle("Finanças - Seja bem-vindo: " + loginUsuarioLogado);
                 menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 menu.setVisible(true);
             }
@@ -102,5 +120,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuDespesa;
     private javax.swing.JMenuItem menuReceita;
     private javax.swing.JMenu menuSair;
+    private javax.swing.JMenuItem menuTipoDespesa;
+    private javax.swing.JMenuItem menuTipoReceita;
     // End of variables declaration//GEN-END:variables
 }

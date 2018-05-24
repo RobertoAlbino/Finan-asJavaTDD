@@ -5,12 +5,11 @@ import java.io.Serializable;
 import com.esucri.financa.model.base.Entity;
 import com.esucri.financa.utils.MD5Utils;
 
-public class Usuario extends Entity implements Serializable {
-    
-    public int id;
-    public String login;
-    public String email;
-    public String senha;
+public class Usuario extends Entity implements Serializable {    
+    private int id;
+    private String login;
+    private String email;
+    private String senha;
     
     public Usuario() {}
     

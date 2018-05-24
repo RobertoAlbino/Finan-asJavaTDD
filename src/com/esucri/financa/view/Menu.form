@@ -35,9 +35,19 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReceitaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuTipoReceita">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo de receita"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuDespesa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Despesa"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuTipoDespesa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo de despesa"/>
               </Properties>
             </MenuItem>
           </SubComponents>

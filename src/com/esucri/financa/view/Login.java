@@ -105,7 +105,7 @@ public class Login extends javax.swing.JFrame {
             Boolean loginExiste = new DaoUsuario().loginValido(labelLogin.getText(), labelSenha.getText());
             if (loginExiste) {
                 Usuario usuarioLogado = new DaoUsuario().findByLoginSenha(labelLogin.getText(), MD5Utils.encriptarSenha(labelSenha.getText()));
-                Menu.create(usuarioLogado.id, usuarioLogado.login);
+                Menu.create(usuarioLogado.getId(), usuarioLogado.getLogin());
                 this.dispose();
             } else {
                 AlertUtils.warning("Usuário não encontrado!");
