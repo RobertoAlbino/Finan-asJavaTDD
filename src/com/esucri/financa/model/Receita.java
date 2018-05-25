@@ -17,6 +17,10 @@ public class Receita extends Entity implements Serializable {
     
     public Receita() {}
     
+    public Receita(int id) {
+        this.id = id;
+    }
+    
     public Receita(int id, Date dataReceita, Double valor, EModoPagamento modoPagamento, Usuario usuario, TipoReceita tipoReceita) {
         this.id = id;
         this.dataReceita = dataReceita;

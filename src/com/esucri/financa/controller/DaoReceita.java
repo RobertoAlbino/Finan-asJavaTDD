@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 
 import com.esucri.financa.model.Receita;
 import com.esucri.financa.enums.EModoPagamento;
-import com.esucri.financa.controller.DaoUsuario;
-import com.esucri.financa.controller.DaoTipoReceita;
 import com.esucri.financa.controller.base.DaoReflection;
 
 public class DaoReceita extends DaoReflection<Receita> {
@@ -15,8 +13,8 @@ public class DaoReceita extends DaoReflection<Receita> {
     
     public int insert(Receita receita) throws Exception {
         SQL = "INSERT INTO RECEITA " +
-                           "(DESCRICAO, ID_USUARIO)" +
-                           "VALUES (?,?)";
+                           "(DATA_RECEITA, VALOR, MODO_PAGAMENTO, ID_USUARIO, ID_TIPO_RECEITA)" +
+                           "VALUES (?, ?, ?, ?, ?)";
         return super.executeUpdate(SQL);        
     }
     
@@ -25,7 +23,7 @@ public class DaoReceita extends DaoReflection<Receita> {
         ResultSet registros = super.executeQuery(SQL);
         LinkedList<Receita> receita = new LinkedList();
         while (registros.next()) {
-            receita.add(populateTipoReceita(registros));
+            receita.add(populateReceita(registros));
         }
         return receita;
     }
@@ -37,9 +35,9 @@ public class DaoReceita extends DaoReflection<Receita> {
         ResultSet registros = super.executeQuery(SQL);
         LinkedList<Receita> listaReceitas = new LinkedList();
         while (registros.next()) {
-            listaReceitas.add(populateTipoReceita(registros));
+            listaReceitas.add(populateReceita(registros));
         }
-        return listaTiposReceita;
+        return listaReceitas;
     }
     
     public Receita populateReceita(ResultSet rs) throws Exception {
@@ -48,7 +46,7 @@ public class DaoReceita extends DaoReflection<Receita> {
                            rs.getDouble("VALOR"),
                            EModoPagamento.valueOf(rs.getString("MODO_PAGAMENTO")),
                            new DaoUsuario().getById(rs.getInt("ID_USUARIO")),
-                           new DaoUsuario().getById(rs.getInt("ID_USUARIO")));
+                           new DaoTipoReceita().getById(rs.getInt("ID_TIPO_RECEITA")));
     } 
     
 }

@@ -11,6 +11,6 @@ public class DatabaseContext {
     private static Connection context = null;
     
     public static Connection getContext() throws SQLException {
-        return context == null ? DriverManager.getConnection(SERVER, LOGIN, SENHA) : context;
+        return context == null ? context = DriverManager.getConnection(SERVER, LOGIN, SENHA) : context;
     }
 }

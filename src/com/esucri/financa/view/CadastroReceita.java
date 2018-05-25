@@ -1,18 +1,24 @@
 package com.esucri.financa.view;
 
+import com.esucri.financa.controller.DaoReceita;
+import com.esucri.financa.controller.DaoTipoReceita;
 import com.esucri.financa.utils.AlertUtils;
 import javax.swing.JTextField;
 
 import com.esucri.financa.model.Receita;
+import com.esucri.financa.model.TipoReceita;
 import com.esucri.financa.utils.FormUtils;
 import com.esucri.financa.utils.StringUtils;
+import java.util.LinkedList;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 
 public class CadastroReceita extends javax.swing.JFrame {
     
     public CadastroReceita() {
         initComponents();
     }
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +48,11 @@ public class CadastroReceita extends javax.swing.JFrame {
         botaoLast = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -118,6 +129,11 @@ public class CadastroReceita extends javax.swing.JFrame {
         });
 
         botaoExcluir.setText("Excluir");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirActionPerformed(evt);
+            }
+        });
 
         botaoFirst.setText("<<");
 
@@ -235,7 +251,9 @@ public class CadastroReceita extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoNextActionPerformed
 
     private void botaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoActionPerformed
-
+        JTextField[] fieldList = { labelDataReceita, 
+                                   labelValorReceita};
+        FormUtils.cleanTextFields(fieldList);
     }//GEN-LAST:event_botaoNovoActionPerformed
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
@@ -254,6 +272,31 @@ public class CadastroReceita extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        try {
+            String[] stringList = { labelCodigo.getText() };
+            if (!StringUtils.stringListIsValid(stringList)) {
+                AlertUtils.error("Campo código não informado.");
+                return;
+            }
+            Receita receita = new Receita(Integer.valueOf(labelCodigo.getText()));
+            int quantidadeRegistrosAfetados = new DaoReceita().deleteEntity(receita);
+            if (quantidadeRegistrosAfetados > 0) {
+                JTextField[] fieldList = { labelDataReceita, labelValorReceita };
+                FormUtils.cleanTextFields(fieldList);
+                AlertUtils.information("Registro removido com sucesso.");                
+            } else {
+                AlertUtils.error("Não foi possível exlcuir a receita.");
+            }     
+        } catch (Exception ex) {
+            AlertUtils.error(ex.getMessage());
+        }       
+    }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+    }//GEN-LAST:event_formWindowActivated
 
     public static void create() {
         /* Set the Nimbus look and feel */

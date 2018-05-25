@@ -18,6 +18,12 @@ public class DaoTipoReceita extends DaoReflection<TipoReceita> {
         return super.executeUpdate(SQL, tipoReceita.getDescricao(), tipoReceita.getUsuario().getId());        
     }
     
+    public TipoReceita getById(int id) throws Exception {
+        SQL = "SELECT * FROM TIPO_RECEITA WHERE ID = ?";
+        ResultSet rs = super.executeQuery(SQL, id);
+        return rs.next() ? populateTipoReceita(rs) : new TipoReceita();
+    }
+    
     public List<TipoReceita> getAll() throws Exception {
         SQL = "SELECT * FROM TIPO_RECEITA ORDER BY ID";
         ResultSet registros = super.executeQuery(SQL);
