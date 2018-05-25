@@ -3,6 +3,7 @@ package com.esucri.financa.view;
 import com.esucri.financa.utils.AlertUtils;
 import javax.swing.JTextField;
 
+import com.esucri.financa.model.Receita;
 import com.esucri.financa.utils.FormUtils;
 import com.esucri.financa.utils.StringUtils;
 
@@ -241,6 +242,7 @@ public class CadastroReceita extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
+    
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
          String[] fieldList = { labelDataReceita.getText(), 
                                labelValorReceita.getText(),
