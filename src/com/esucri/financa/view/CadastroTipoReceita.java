@@ -1,11 +1,16 @@
 package com.esucri.financa.view;
 
+import javax.swing.JTextField;
+
+import com.esucri.financa.utils.FormUtils;
 import com.esucri.financa.utils.AlertUtils;
 import com.esucri.financa.utils.StringUtils;
 import com.esucri.financa.model.TipoReceita;
-import com.esucri.financa.view.Menu;
 import com.esucri.financa.controller.DaoUsuario;
+import com.esucri.financa.view.TableModel;
 import com.esucri.financa.controller.DaoTipoReceita;
+
+import java.util.List;
 
 public class CadastroTipoReceita extends javax.swing.JFrame {
     
@@ -29,15 +34,25 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botaoPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableTipoReceita = new javax.swing.JTable();
         botaoSalvar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         botaoNovo = new javax.swing.JButton();
         labelDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         botaoExcluir.setText("Excluir");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Descrição:");
 
@@ -66,6 +81,11 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
         jLabel1.setText("Filtro:");
 
         botaoPesquisar.setText("Filtrar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,7 +111,7 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableTipoReceita.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,7 +122,7 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableTipoReceita);
 
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,22 +214,77 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoNextActionPerformed
 
     private void botaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoActionPerformed
-        labelCodigo.setText("0");
-        labelDescricao.setText("");
+        JTextField[] fields = { labelCodigo, labelDescricao };
+        FormUtils.cleanTextFields(fields);
     }//GEN-LAST:event_botaoNovoActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         try {
             String[] fieldList = { labelDescricao.getText() };
             if (!StringUtils.stringListIsValid(fieldList)) {
-                AlertUtils.warning("Nem todos os campos foram preennchidos!");
+                AlertUtils.warning("Nem todos os campos foram preenchidos!");
                 return;
             }
             TipoReceita tipoReceita = new TipoReceita(labelDescricao.getText(), new DaoUsuario().getById(Menu.getIdUsuarioLogado()));
+            int quantidadeRegistrosAfetados = new DaoTipoReceita().insert(tipoReceita);
+            if (quantidadeRegistrosAfetados > 0) {
+                JTextField[] fields = { labelCodigo, labelDescricao };
+                FormUtils.cleanTextFields(fields);
+                AlertUtils.information("Registro inserido com sucesso.");                
+            } else {
+                AlertUtils.error("Não foi possível inserir um novo tipo de receita");
+            }                     
         } catch(Exception ex) {
             AlertUtils.error(ex.getMessage());
         }        
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        try {
+            String[] stringList = { labelCodigo.getText() };
+            if (!StringUtils.stringListIsValid(stringList)) {
+                AlertUtils.error("Campo código não informado.");
+                return;
+            }
+            TipoReceita tipoReceita = new TipoReceita(Integer.valueOf(labelCodigo.getText()));
+            int quantidadeRegistrosAfetados = new DaoTipoReceita().deleteEntity(tipoReceita);
+            if (quantidadeRegistrosAfetados > 0) {
+                JTextField[] fields = { labelCodigo, labelDescricao };
+                FormUtils.cleanTextFields(fields);
+                AlertUtils.information("Registro removido com sucesso.");                
+            } else {
+                AlertUtils.error("Não foi possível exlcuir o tipo de receita.");
+            }     
+        } catch (Exception ex) {
+            AlertUtils.error(ex.getMessage());
+        }       
+    }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void loadTableTipoReceita() {
+        try { 
+            List<TipoReceita> lista = new DaoTipoReceita().getAll();
+            tableTipoReceita.setModel(new TableModel(TipoReceita.class, lista, tableTipoReceita));
+        } catch (Exception ex) {
+            AlertUtils.error(ex.getMessage());
+        }            
+    }
+    
+    private void loadTableTipoReceitaWithFilter() {
+        try { 
+            List<TipoReceita> lista = new DaoTipoReceita().getAllWithFilter(labelFiltro.getText());
+            tableTipoReceita.setModel(new TableModel(TipoReceita.class, lista, tableTipoReceita));
+        } catch (Exception ex) {
+            AlertUtils.error(ex.getMessage());
+        }            
+    }
+    
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        loadTableTipoReceita();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
+        loadTableTipoReceitaWithFilter();
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,9 +338,9 @@ public class CadastroTipoReceita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField labelCodigo;
     private javax.swing.JTextField labelDescricao;
     private javax.swing.JTextField labelFiltro;
+    private javax.swing.JTable tableTipoReceita;
     // End of variables declaration//GEN-END:variables
 }

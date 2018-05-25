@@ -38,7 +38,7 @@ public abstract class DaoReflection<T extends Entity> {
     }
     
     public int deleteEntity(T entity) throws SQLException{
-        final String SQL = "DELETE FROM "+ entity.getClass().getSimpleName() +" WHERE ID=" + entity.getId();
+        final String SQL = "DELETE FROM "+ entity.getTableName() +" WHERE ID=" + entity.getId();
         return executeUpdate(SQL);
     }
     

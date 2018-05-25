@@ -7,11 +7,17 @@ import com.esucri.financa.model.base.Entity;
 
 public class TipoReceita extends Entity implements Serializable {
     
+    @SwingColumn(description = "Código",colorOfBackgound = "")
     private int id;
+    @SwingColumn(description = "Descrição",colorOfBackgound = "")
     private String descricao;
     private Usuario usuario;
     
     public TipoReceita() {}
+    
+    public TipoReceita(int id) {
+        this.id = id;
+    }
     
     public TipoReceita(String descricao) {
         this.descricao = descricao;   
@@ -53,4 +59,11 @@ public class TipoReceita extends Entity implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String getTableName() {
+        return "TIPO_RECEITA";
+    }
+    
+    
 }

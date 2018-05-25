@@ -1,9 +1,11 @@
 package com.esucri.financa.controller;
 
 import com.esucri.financa.model.TipoReceita;
-import com.esucri.financa.controller.DaoUsuario;
-import com.esucri.financa.controller.DaoTipoReceita;
 import com.esucri.financa.controller.base.DaoReflection;
+
+import java.util.List;
+import java.util.LinkedList;
+
 import java.sql.ResultSet;
 
 public class DaoTipoReceita extends DaoReflection<TipoReceita> {
@@ -14,6 +16,26 @@ public class DaoTipoReceita extends DaoReflection<TipoReceita> {
                            "(DESCRICAO, ID_USUARIO)" +
                            "VALUES (?,?)";
         return super.executeUpdate(SQL, tipoReceita.getDescricao(), tipoReceita.getUsuario().getId());        
+    }
+    
+    public List<TipoReceita> getAll() throws Exception {
+        SQL = "SELECT * FROM TIPO_RECEITA ORDER BY ID";
+        ResultSet registros = super.executeQuery(SQL);
+        LinkedList<TipoReceita> listaTiposReceita = new LinkedList();
+        while (registros.next()) {
+            listaTiposReceita.add(populateTipoReceita(registros));
+        }
+        return listaTiposReceita;
+    }
+    
+    public List<TipoReceita> getAllWithFilter(String filter) throws Exception {
+        SQL = "SELECT * FROM TIPO_RECEITA WHERE DESCRICAO LIKE '%"+ filter +"%' ORDER BY ID";
+        ResultSet registros = super.executeQuery(SQL);
+        LinkedList<TipoReceita> listaTiposReceita = new LinkedList();
+        while (registros.next()) {
+            listaTiposReceita.add(populateTipoReceita(registros));
+        }
+        return listaTiposReceita;
     }
     
     public TipoReceita populateTipoReceita(ResultSet rs) throws Exception {

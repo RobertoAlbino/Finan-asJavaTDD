@@ -75,4 +75,9 @@ public class Receita extends Entity implements Serializable {
     public void setTipoReceita(TipoReceita tipoReceita) {
         this.tipoReceita = tipoReceita;
     }
+    
+    @Override
+    public String getTableName() {
+        return "RECEITA";
+    }
 }

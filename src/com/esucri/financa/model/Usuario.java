@@ -53,4 +53,9 @@ public class Usuario extends Entity implements Serializable {
     public void setSenha(String senha) throws Exception {
         this.senha = MD5Utils.encriptarSenha(senha);
     }
+    
+    @Override
+    public String getTableName() {
+        return "USUARIO";
+    }
 }

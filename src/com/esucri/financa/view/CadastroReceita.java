@@ -1,5 +1,11 @@
 package com.esucri.financa.view;
 
+import com.esucri.financa.utils.AlertUtils;
+import javax.swing.JTextField;
+
+import com.esucri.financa.utils.FormUtils;
+import com.esucri.financa.utils.StringUtils;
+
 public class CadastroReceita extends javax.swing.JFrame {
     
     public CadastroReceita() {
@@ -41,6 +47,11 @@ public class CadastroReceita extends javax.swing.JFrame {
         jLabel1.setText("Filtro:");
 
         botaoPesquisar.setText("Filtrar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,8 +103,18 @@ public class CadastroReceita extends javax.swing.JFrame {
         labelCodigo.setText("0");
 
         botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarActionPerformed(evt);
+            }
+        });
 
         botaoNovo.setText("Novo");
+        botaoNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoActionPerformed(evt);
+            }
+        });
 
         botaoExcluir.setText("Excluir");
 
@@ -211,6 +232,26 @@ public class CadastroReceita extends javax.swing.JFrame {
     private void botaoNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoNextActionPerformed
+
+    private void botaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoActionPerformed
+
+    }//GEN-LAST:event_botaoNovoActionPerformed
+
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
+        
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
+
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+         String[] fieldList = { labelDataReceita.getText(), 
+                               labelValorReceita.getText(),
+                               comboDescricao.getToolTipText(),
+                               comboModoPagamento.getToolTipText() 
+        };
+        if (!StringUtils.stringListIsValid(fieldList)) {
+            AlertUtils.warning("Nem todos os campos foram preenchidos!");
+            return;
+        }
+    }//GEN-LAST:event_botaoSalvarActionPerformed
 
     public static void create() {
         /* Set the Nimbus look and feel */

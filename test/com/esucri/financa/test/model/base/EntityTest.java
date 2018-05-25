@@ -6,7 +6,7 @@ import junit.framework.Assert;
 import com.esucri.financa.model.base.Entity;
 
 public class EntityTest extends Entity {
-
+    
     @Override
     public int getId() {
         return 0;
@@ -15,6 +15,11 @@ public class EntityTest extends Entity {
     @Override
     public void setId(int id) {
         return;
+    }
+
+    @Override
+    public String getTableName() {
+        return "ENTITY_TEST";
     }
     
     @Test
